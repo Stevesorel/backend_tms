@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: tms-postgres
+    environment:
+      POSTGRES_USER: steve
+      POSTGRES_PASSWORD: success
+      POSTGRES_DB: steve
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  backend:
+    build: .
+    container_name: tms-backend
+    ports:
+      - "4000:4000"
+    depends_on:
+      - postgres
+    environment:
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_USERNAME=steve
+      - DB_PASSWORD=success
+      - DB_DATABASE=steve
+      - DB_DIALECT=postgres
+      - PORT=4000
+
+volumes:
+  postgres_data:

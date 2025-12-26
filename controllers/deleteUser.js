@@ -1,4 +1,4 @@
-const User = require('../models/user')
+const User = require('../models/User')
 
 exports.deleteUser = async (request, response) => {
     const { id } = request.params

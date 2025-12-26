@@ -1,10 +1,10 @@
 const bcrypt = require('bcrypt')
 const { UniqueConstraintError } = require('sequelize')
-const User = require('../models/user')
+const User = require('../models/User')
 
 exports.updateUser = async (request, response) => {
     const { id } = request.params
-    const { name, email, telephone, site, description, terminer } = request.body
+    const { name, email, telephone, site, description, web_site_link, terminer } = request.body
 
     if (!id) {
         return response.status(400).json({ 
@@ -31,7 +31,8 @@ exports.updateUser = async (request, response) => {
             telephone: telephone !== undefined ? telephone : user.telephone,
             site: site !== undefined ? site : user.site,
             description: description !== undefined ? description : user.description,
-            terminer: terminer !== undefined ? terminer : user.terminer
+            terminer: terminer !== undefined ? terminer : user.terminer,
+            web_site_link: web_site_link !== undefined ? web_site_link : user.web_site_link
         })
 
         return response.status(200).json({

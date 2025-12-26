@@ -1,9 +1,9 @@
 const bcrypt = require('bcrypt')
 const { UniqueConstraintError } = require('sequelize')
-const User = require('../models/user')
+const User = require('../models/User')
 
 exports.register = async (request, response) => {
-    const { name, email, telephone, site, description, terminer } = request.body
+    const { name, email, telephone, site, description, terminer, web_site_link } = request.body
 
     // Validation des champs requis
     if (!name || !email || !telephone || !site || !description) {
@@ -21,6 +21,7 @@ exports.register = async (request, response) => {
             telephone,
             site,
             description,
+            web_site_link,
             terminer: terminer || false
         })
 

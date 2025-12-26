@@ -27,6 +27,10 @@ const User = instance.define("User", {
         type: DataTypes.BOOLEAN,  // Changé de STRING à BOOLEAN
         allowNull: true,
         defaultValue: false
+    },
+    web_site_link: {
+        type: DataTypes.STRING,
+        allowNull: true,
     }
 }, {
     timestamps: true,

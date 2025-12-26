@@ -18,12 +18,13 @@ async function testConnection()
 {
     return instance.authenticate()
 }
-
+    
 // Ne pas exécuter automatiquement dans Docker (sera appelé depuis app.js)
-// testConnection().then(()=>{
-//     console.log("✅ Connexion à la base de données réussie")
-// }).catch((error)=>{
-//     console.log("❌ Connexion refusée:", error.message)
-// })
+testConnection().then(()=>{
+    console.log("✅ Connexion à la base de données réussie")
+    instance.sync({ alter : true })  // Synchroniser les modèles
+}).catch((error)=>{
+    console.log("❌ Connexion refusée:", error.message)
+})
 
 module.exports = instance
